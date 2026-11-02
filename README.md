@@ -23,10 +23,10 @@ The agent uses Groq's `openai/gpt-oss-20b` model and connects to Simply.com's pr
 
 ### Enabled MCP tools
 
-- **check-domain-availability:** Checks whether a domain is available for registration.
-- **search-docs:** Searches Simply.com documentation.
+- **list-accounts:** List the Accounts of the User at Simply.com.
+- **list-subdomains:** List the subdomains under the domains of the User at Simply.com.
 
-The MCP server also exposes `create-order-link` and `list-supported-tlds`, which can be enabled in the backend when needed.
+The MCP server also exposes a lot of other tools which could be added.
 
 ---
 
@@ -37,8 +37,8 @@ The MCP server also exposes `create-order-link` and `list-supported-tlds`, which
 - FastAPI backend integration
 - LangChain agent powered by Groq
 - Simply.com Private MCP integration OAuth 2.1
-- Domain availability checks
-- Simply.com documentation search
+- List the Accounts of the User at Simply.com
+- List the subdomains under the domain of the User
 - Display of agent actions, tool inputs, and observations
 - Formatted JSON tool results
 - Loading indicators and error handling
