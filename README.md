@@ -9,7 +9,7 @@ The application allows authenticated users to ask questions about domain availab
 
 **Architecture:**
 
-Vue 3 → JWT Authentication → FastAPI → LangChain Agent → Groq LLM → Simply.com Private MCP → AI Response
+Vue 3 → JWT Authentication → FastAPI → LangChain Agent → Groq LLM → Simply.com MCP OAuth 2.1 → AI Response
 
 ---
 
@@ -134,11 +134,8 @@ Never commit API keys, JWT secrets, or other sensitive credentials to the reposi
 
 ### Example questions
 
-- Is `testabc.com` available?
-- Can I register `example-domain.com`?
-- How can I check whether a domain can be transferred?
-- Where can I find Simply.com's domain documentation?
-
+- Can you list my Accounts?
+- What are the subdomains for `example-domain.com`?
 The available operations depend on the MCP tools enabled in the backend.
 
 ---
@@ -159,7 +156,7 @@ Example request:
 
 ```json
 {
-  "message": "Is testabc.com available?"
+  "message": "What are my Accounts?"
 }
 ```
 
@@ -170,14 +167,12 @@ Example response:
   "response": {
     "actions": [
       {
-        "action": "check-domain-availability",
-        "action_input": {
-          "domain": "testabc.com"
-        },
-        "observation": "{\"domain\":\"testabc.com\",\"available\":false}"
+        "action": "list-accounts",
+        "action_input": {},
+        "observation": "{\"accounts\":[{\"account_name\":\"ID12345\",\"name\":\"Your Name\"},{\"account_name\":\"ID6789\",\"name\":\"Your Name\"}]}"
       }
     ],
-    "final_answer": "testabc.com is already registered."
+    "final_answer": "Here are the Simply.com accounts linked to your authenticated connection:\n\n| Account ID | Account Name |\n|------------|--------------|\n| ID12345  | Your Name |\n| ID6789   | Your Name |\n\nLet me know if you’d like more details about any of these accounts or anything else!"
   }
 }
 ```
@@ -204,17 +199,13 @@ https://mcp.simply.com/v2
 
 The MCP server provides access to supported Simply.com functionality.
 
-### `check-domain-availability`
+### `list-accounts`
 
-Checks domain availability and may return registration status, eligibility information, links, and follow-up instructions.
+List the Accounts for the current simply Account.
 
-### `search-docs`
+### `list-subdomains`
 
-Searches Simply.com documentation to help answer questions about its services.
-
-The server also provides `create-order-link` and `list-supported-tlds`. Only configured and enabled tools are available to the agent.
-
-A domain availability check does not complete a registration. Domain status can change, and registration must be completed through the relevant provider workflow.
+List subdomains for the domain at the Account at Simply.com.
 
 ---
 
@@ -259,8 +250,8 @@ For backend implementation details, see the [FastAPI backend repository](https:/
 
 # 💡 Use Cases
 
-- 🌐 Domain availability assistants
-- 🔎 Domain documentation search
+- 🌐 Account information and availability assistants
+- 🔎 List and overview of Subdomains under the Domain at Simply
 - 🤖 AI assistants using external tools
 - 🔌 MCP integrations
 - 🛠️ Tool-using AI applications
