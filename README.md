@@ -5,7 +5,7 @@ Last updated: 02-11-2026
 
 A Vue 3 single-page application (SPA) using Pinia and JWT authentication to interact with a FastAPI AI Agent powered by LangChain, Groq, and the Simply.com Private Model Context Protocol (MCP) server.
 
-The application allows authenticated users to ask questions about domain availability and Simply.com services, receive AI-generated answers, and inspect the agent's tool calls, inputs, and observations.
+The application allows authenticated users to ask questions about lists of Accounts and Subdomains of the current User at Simply.com uses the services, receive AI-generated answers, and inspect the agent's tool calls, inputs, and observations.
 
 **Architecture:**
 
