@@ -1,7 +1,7 @@
 
 # 🤖 vue-fastapi-jwt-simply-mcp-ai-agent
 
-Last updated: 03-11-2026
+Last updated: 04-11-2026
 
 A Vue 3 single-page application (SPA) using Pinia and JWT authentication to interact with a FastAPI AI Agent powered by LangChain, Groq, and the Simply.com Private Model Context Protocol (MCP) server.
 
